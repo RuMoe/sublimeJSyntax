@@ -1,0 +1,59 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: J
+scopeName: source.j
+fileTypes: [ijs]
+uuid: 1e5801dc-da34-4873-8283-623267b45e9b
+
+patterns:
+- name:  comment.line.nb.j
+  match: NB\..*$
+
+- name: constant.numeric.j
+  match: |
+    (?x)
+    (?<!\w)(
+    (__?(?!\d))|
+    (_?\d++(\.(\d++)?)?(e_?\d++)?)(j\g<1>)?
+    )(?![_:a-zA-Z]) 
+
+- name: string.quoted
+  match: \'.*?\'
+
+- name: entity.name.function.verb.j
+  match: |
+    (?x)
+    ([=!\]](?![\.:]))|
+    ([\^\?]\.?(?!:))|
+    ([\[;]:?(?!\.))|
+    ([~}\"i][\.:])|
+    (?<![a-zA-Z])([ACeEIjLor]\.(?!:))|
+    ([_/\\]:(?!\.))|
+    (?<![a-zA-Z])(([qsux]|((?<!\d)_?\d)):(?!\.))|
+    ([<>\+*\-%\$|,#][\.:]?)|
+    ({(::|[\.:]?))|(p(\.\.|[\.:]))
+
+- name: entity.name.function.conjunction.j
+  match: |
+    (?x)
+    ([\.:@&][\.:]?)|&\.:|
+    (;\.(?!:))|((?<!\w)[dHT]\.(?!:))|
+    (![\.:])|((?<!\w)D[\.:])|
+    (\^:)|((?<!\w)[LS]:)|
+    (`[\.]?)|
+    (\"(?![.:]))
+
+- name: entity.name.function.adverb.j
+  match: ~|/\.?|\\\.?|\}|((?<!\w)([bfMt]\.)|t:)
+
+- name: keyword.control.j
+  match: |
+    (?x)
+    (?<!\w)
+    (if\.|do\.|return\.|end\.|assert\.|select\.|
+    	elseif\.|for(_\w*)?\.|else\.|case\.|throw\.|while\.
+    	whilst\.|goto_name\.)
+
+- name: keyword.operator.j
+  match: (=[\.:])|\)|\(
+...
